@@ -28,5 +28,5 @@ app.patch('/students/:id', updateStudentField);
 app.get('/students/:id',getStudentbyID);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on https://server-side-41oz.onrender.com/:${PORT}`);
 });

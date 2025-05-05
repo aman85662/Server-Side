@@ -15,7 +15,7 @@ const EditStudents = () => {
     const updateStudent = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.put(`http://localhost:5004/students/${userId}`, {
+            const response = await axios.put(`https://server-side-41oz.onrender.com//students/${userId}`, {
                 name: students.name,
                 age: students.age,
                 email: students.email
@@ -36,7 +36,7 @@ const EditStudents = () => {
     const loadStudent = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(`http://localhost:5004/students/${userId}`);
+            const response = await axios.get(`https://server-side-41oz.onrender.com/students/${userId}`);
             if (response.status === 200) {
                 setStudents(response.data);
                 toast.success("Student loaded successfully!");
