@@ -15,7 +15,7 @@ const EditStudents = () => {
     const updateStudent = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.put(`https://server-side-41oz.onrender.com//students/${userId}`, {
+            const response = await axios.put(`https://server-side-41oz.onrender.com/students/${userId}`, {
                 name: students.name,
                 age: students.age,
                 email: students.email
