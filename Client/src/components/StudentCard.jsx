@@ -13,7 +13,7 @@ function StudentCard({ id, name, age, email }) {
 
         try {
             setIsDeleting(true)
-            const response = await axios.delete(`https://server-side-41oz.onrender.com//${id}`)
+            const response = await axios.delete(`https://server-side-41oz.onrender.com/${id}`)
             if (response.status === 200 && response.data.success) {
                 toast.success(response.data.message || 'Student deleted successfully!')
             } else {
