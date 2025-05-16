@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useParams } from "react-router-dom"; // <-- fix import
+import { useParams } from "react-router"; // <-- fix import
 
 const EditStudents = () => {
     const [students, setStudents] = useState({
