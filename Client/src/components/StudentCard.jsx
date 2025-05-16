@@ -11,20 +11,16 @@ function StudentCard({ id, name, age, email }) {
             return
         }
 
-        try {
-            setIsDeleting(true)
-            const response = await axios.delete(`https://server-side-41oz.onrender.com/${id}`)
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/${id}`)
             if (response.status === 200 && response.data.success) {
                 toast.success(response.data.message || 'Student deleted successfully!')
             } else {
                 toast.error(response.data.message || 'Failed to delete student.')
             }
-        } catch (error) {
-            console.error('Error deleting student:', error)
-            toast.error('Error deleting student. Please try again.')
-        } finally {
-            setIsDeleting(false)
-        }
+            setIsDeleting(true)
+            setTimeout(() => {
+                setIsDeleting(false)
+            }, 2000)
     }
 
     return (

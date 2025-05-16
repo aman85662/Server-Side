@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom"; // <-- fix import
 
 const EditStudents = () => {
     const [students, setStudents] = useState({
@@ -15,7 +15,7 @@ const EditStudents = () => {
     const updateStudent = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.put(`https://server-side-41oz.onrender.com/students/${userId}`, {
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}/students/${userId}`, {
                 name: students.name,
                 age: students.age,
                 email: students.email
@@ -26,8 +26,7 @@ const EditStudents = () => {
                 toast.error(response.data.message || "Failed to update student.");
             }
         } catch (error) {
-            console.error("Error updating student:", error);
-            toast.error("Error updating student. Please try again.");
+            toast.error(error.response?.data?.message || "Failed to update student.");
         } finally {
             setIsLoading(false);
         }
@@ -36,10 +35,9 @@ const EditStudents = () => {
     const loadStudent = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(`https://server-side-41oz.onrender.com/students/${userId}`);
-            if (response.status === 200) {
-                setStudents(response.data);
-                toast.success("Student loaded successfully!");
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/students/${userId}`);
+            if (response.status === 200 && response.data.success) {
+                setStudents(response.data.data); // <-- fix here
             } else {
                 toast.error("Failed to load student.");
             }
@@ -57,7 +55,7 @@ const EditStudents = () => {
         }
     }, [userId]);
 
-    return (
+     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
             <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
                 <h1 className="text-2xl font-bold text-blue-800 mb-6 text-center">

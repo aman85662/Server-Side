@@ -127,7 +127,7 @@ const updateStudent = (req, res) => {
 const updateStudentField = (req, res) => {
     const idToUpdate = Number(req.params.id);
     const { name, age, email } = req.body;
-    const studentIndex = Students.findIndex(student => student.id === idToUpdate);
+    const studentIndex = Students.findIndex(student => student.id == idToUpdate);
 
     if (studentIndex === -1) {
         return res.status(400).json({
